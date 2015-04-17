@@ -16,8 +16,6 @@ class PlaySoundsViewController: UIViewController {
     var audioFile: AVAudioFile!
     var receivedAudio: RecordedAudio!
     
-    @IBOutlet weak var stopButton: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,10 +24,6 @@ class PlaySoundsViewController: UIViewController {
         
         audioEngine = AVAudioEngine()
         audioFile = AVAudioFile(forReading: receivedAudio.filePathUrl, error: nil)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        stopButton.enabled = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,15 +48,11 @@ class PlaySoundsViewController: UIViewController {
 
     @IBAction func stopAudio(sender: UIButton) {
         stopAudioObjects()
-        
-        stopButton.enabled = false
     }
     
     func playAudioWithVariableRate(rate: Float) {
         stopAudioObjects()
-        
-        stopButton.enabled = true
-        
+  
         audioPlayer.rate = rate
         audioPlayer.currentTime = 0.0
         audioPlayer.play()
@@ -70,8 +60,6 @@ class PlaySoundsViewController: UIViewController {
     
     func playAudioWithVariablePitch(pitch: Float) {
         stopAudioObjects()
-        
-        stopButton.enabled = true
         
         var audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
@@ -85,7 +73,7 @@ class PlaySoundsViewController: UIViewController {
         
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
         audioEngine.startAndReturnError(nil)
-        
+
         audioPlayerNode.play()
     }
     

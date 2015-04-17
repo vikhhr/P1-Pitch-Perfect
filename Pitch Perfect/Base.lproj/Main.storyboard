@@ -221,9 +221,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <connections>
-                        <outlet property="stopButton" destination="XrP-rI-5gu" id="zLP-kv-q6x"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQe-mO-FNE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
